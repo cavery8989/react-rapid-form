@@ -33,15 +33,18 @@ const FormContainer: React.FC<FromContainerProps> = ({
   const { currentValues } = useFormValues();
 
   React.useEffect(() => {
-    manageSubmit();
     async function manageSubmit() {
       const p = new Promise(async () => {
-        if (submitting && onSubmit) {
+        if (onSubmit) {
           await onSubmit(currentValues);
-          setSubmitting(false);  
+          setSubmitting(false);
         }
       });
       await p;
+    }
+
+    if (submitting) {
+      manageSubmit();
     }
   }, [submitting]);
 

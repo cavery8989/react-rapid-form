@@ -3,9 +3,9 @@ import { Hello } from "./components/hello";
 import { Form } from "./components/form/form";
 import { FormInput } from "./components/form/input";
 import { SubmitButton } from "./components/form/submitButton";
-import { Resolve } from "webpack";
 
 export const App: React.FC = () => {
+  
   const handleSubmit = React.useCallback(async (latestForm) => {
     const p = new Promise((resolve: any) => {
       setTimeout(() => {
