@@ -1,12 +1,10 @@
 import * as React from "react";
 import { useFormInput } from "./context";
+import { BaseInputProps } from "./declararations";
 
-interface InputProps {
-  name: string;
-  label: string;
-}
+interface InputProps extends BaseInputProps {}
 
-export const FormTextInput: React.FC<InputProps> = ({ name, label }) => {
+export const TextInput: React.FC<InputProps> = ({ name, label }) => {
   const { value, onChange } = useFormInput(name);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
@@ -14,7 +12,7 @@ export const FormTextInput: React.FC<InputProps> = ({ name, label }) => {
 
   return (
     <div>
-      <label htmlFor={name}>{label || name}</label>
+      {label && <label htmlFor={name}>{label}</label>}
       <input
         id={name}
         onChange={handleChange}

@@ -1,8 +1,11 @@
 import * as React from "react";
 import { Hello } from "./components/hello";
-import { Form } from "./components/form/form";
-import { FormTextInput } from "./components/form/input";
-import { SubmitButton } from "./components/form/submitButton";
+import {
+  Form,
+  TextInput,
+  SelectInput,
+  SubmitButton,
+} from "./components/rapidForm";
 
 export const App: React.FC = () => {
   const handleSubmit = React.useCallback(async (latestForm) => {
@@ -24,7 +27,16 @@ export const App: React.FC = () => {
       <Hello compiler={"Typescript"} framework={"react"} />
 
       <Form onSubmit={handleSubmit}>
-        <FormTextInput label={'First name'} name={"name"} />
+        <TextInput label={"First name"} name={"firstName"} />
+        <SelectInput
+          name={"numberOfCats"}
+          options={[
+            { label: "one cat", value: 1, },
+            { label: "two cats", value: 2, default: true },
+            { label: "three cats", value: 3 },
+            { label: "three cats", value: 'potato' },
+          ]}
+        />
         <SubmitButton />
       </Form>
     </div>
