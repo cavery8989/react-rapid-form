@@ -42,7 +42,7 @@ export const useFormValues = () => {
   } = context;
 
   return {
-    onChange: (name: string, nextValue: string) => {
+    updateFormValue: (name: string, nextValue: string) => {
       setState((prevState: IForm) => {
         const newState = { ...prevState };
         newState[name] = nextValue;
@@ -70,5 +70,16 @@ export const useFormState = () => {
       });
     },
     ...currentFormState,
+  };
+};
+
+export const useFormInput = (name: string) => {
+  const { currentValues, updateFormValue } = useFormValues();
+  const onChange = (nextValue: string) => {
+    updateFormValue(name, nextValue);
+  };
+  return {
+    value: currentValues.name,
+    onChange,
   };
 };
